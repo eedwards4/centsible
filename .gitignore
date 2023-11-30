@@ -1,3 +1,4 @@
 /cmake-build-debug
 /.idea
 /mongo/db_output
+/mongo/mongo_login.txt

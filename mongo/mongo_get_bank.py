@@ -1,9 +1,6 @@
 import pymongo
 import os
 
-# mongo user: cent
-# mongo password: ArZrGZ9m3lQ4tYlW
-
 
 def main():
     # Deal with file crap
@@ -19,7 +16,13 @@ def main():
 
     # Connect to the database
     print("Attempting to connect to the database...")
-    client = pymongo.MongoClient('mongodb+srv://cent:ArZrGZ9m3lQ4tYlW@centsible0.i6gri7x.mongodb.net/?retryWrites=true&w=majority')
+    # Get mongo login
+    with open('mongo_login.txt', 'r') as file:
+        credentials = file.readlines()
+        login = credentials[0].strip()
+        password = credentials[1].strip()
+        file.close()
+    client = pymongo.MongoClient('mongodb+srv://{}:{}@centsible0.i6gri7x.mongodb.net/?retryWrites=true&w=majority'.format(login, password))
 
     db = client.data
 

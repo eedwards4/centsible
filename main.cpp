@@ -38,8 +38,11 @@ int main(int argc, char *argv[]) {
     ifstream investmentFile("mongo/db_output/investments.txt");
     string bankLine, investLine;
     if (bankFile.is_open() && investmentFile.is_open()){
-        while (getline(bankFile, bankLine) && getline(investmentFile, investLine)){
-            cout << bankLine << endl << investLine << endl;
+        while (getline(bankFile, bankLine)){
+            cout << bankLine << endl;
+        }
+        while (getline(investmentFile, investLine)){
+            cout << investLine << endl;
         }
         bankFile.close(); investmentFile.close();
     } else{

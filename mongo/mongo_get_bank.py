@@ -28,13 +28,14 @@ def main():
 
     collection = db['banks']
 
-    test = collection.find_one({"account_num": "98709870987"})
     # Access database and send the results to a file
     with open('db_output/banks.txt', 'w') as file:
-        file.write(test["bname"] + '\n')
-        file.write(test["account_num"] + '\n')
-        file.write(test["account_name"] + '\n')
-        file.write(test["balance"] + '\n')
+        for obj in collection.find():
+            file.write(obj["bname"] + '\n')
+            file.write(obj["account_num"] + '\n')
+            file.write(obj["account_name"] + '\n')
+            file.write(obj["balance"] + '\n')
+            file.write("END\n")
         file.close()
 
 

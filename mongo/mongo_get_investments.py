@@ -28,15 +28,16 @@ def main():
 
     collection = db['investments']
 
-    test = collection.find_one({"ticker": "MSFT"})
-
+    # Access database and send the results to a file
     with open('db_output/investments.txt', 'w') as file:
-        file.write(test["ticker"] + '\n')
-        file.write(str(test["num_shares"]) + '\n')
-        file.write(str(test["last_known_value"]) + '\n')
-        file.write(str(test["last_total_value"]) + '\n')
-        file.write(str(test["52_week_h"]) + '\n')
-        file.write(str(test["52_week_l"]) + '\n')
+        for obj in collection.find():
+            file.write(obj["ticker"] + '\n')
+            file.write(str(obj["num_shares"]) + '\n')
+            file.write(str(obj["last_known_value"]) + '\n')
+            file.write(str(obj["last_total_value"]) + '\n')
+            file.write(str(obj["52_week_h"]) + '\n')
+            file.write(str(obj["52_week_l"]) + '\n')
+            file.write("END\n")
         file.close()
 
 

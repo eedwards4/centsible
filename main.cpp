@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
         while (getline(bankFile, bankLine)){
             cout << bankLine << endl;
         }
+        cout << "---------------------------------------------------------------------" << endl;
         while (getline(investmentFile, investLine)){
             cout << investLine << endl;
         }

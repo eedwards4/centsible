@@ -21,7 +21,7 @@ In order to properly interface with a database, you will need to set up your own
 
 --------------------------------------------------------------------
 
-Once you've created the database, create a file in the /mongo directory named "mongo_login.txt" and populate it with the following information in the following order:
+Once you've created the database, create a file in the <a href="https://github.com/eedwards4/centsible/tree/main/mongo">/mongo</a> directory named "mongo_login.txt" and populate it with the following information in the following order:
 
 <ul>
   <li>Atlas username</li>

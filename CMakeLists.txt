@@ -22,7 +22,8 @@ find_package(Qt6 COMPONENTS
   Widgets
   REQUIRED)
 
-add_executable(Centsible main.cpp)
+add_executable(Centsible main.cpp
+        mongoloid.cpp mongoloid.h)
 target_link_libraries(Centsible
   Qt6::Core
   Qt6::Gui

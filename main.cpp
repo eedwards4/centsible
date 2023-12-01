@@ -6,36 +6,27 @@
 //#include <QApplication>
 //#include <QPushButton>
 
-// Python (for database)
-
-
 #include <string>
-#include <vector>
 #include <iostream>
 #include <fstream>
 
+#include "mongoloid.h"
+
 using namespace std;
 
-void getDBInfo(){
-    cout << "Attempting to get DB info...\n";
-    string command = "cd mongo && mongo_get_bank.py && mongo_get_investments.py";
-    int result = system(command.c_str());
-    if (result != 0){
-        cout << "FAILED TO GET DATABASE INFORMATION. EXITING...\n";
-        exit(1);
-    }
-}
+// Globals
+# define BANK_IN_PATH "mongo/db_output/banks.txt"
+# define INVEST_IN_PATH "mongo/db_output/investments.txt"
+# define BANK_OUT_PATH "mongo/db_input/banks.txt"
+# define INVEST_OUT_PATH "mongo/db_input/investments.txt"
 
 int main(int argc, char *argv[]) {
-    /*
-    QApplication a(argc, argv);
-    QPushButton button("Hello world!", nullptr);
-    button.resize( 200, 100 );
-    button.show();
-    return QApplication::exec();*/
-    getDBInfo();
-    ifstream bankFile("mongo/db_output/banks.txt");
-    ifstream investmentFile("mongo/db_output/investments.txt");
+    // Get info from database
+    mongoloid m;
+    m.getinfo();
+
+    ifstream bankFile(BANK_IN_PATH);
+    ifstream investmentFile(INVEST_IN_PATH);
     string bankLine, investLine;
     if (bankFile.is_open() && investmentFile.is_open()){
         while (getline(bankFile, bankLine)){

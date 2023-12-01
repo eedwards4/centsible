@@ -21,8 +21,9 @@ def main():
         credentials = file.readlines()
         login = credentials[0].strip()
         password = credentials[1].strip()
+        url = credentials[2].strip()
         file.close()
-    client = pymongo.MongoClient('mongodb+srv://{}:{}@centsible0.i6gri7x.mongodb.net/?retryWrites=true&w=majority'.format(login, password))
+    client = pymongo.MongoClient('mongodb+srv://{}:{}{}/?retryWrites=true&w=majority'.format(login, password, url))
 
     db = client.data
 

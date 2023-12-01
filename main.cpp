@@ -23,22 +23,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
     // Get info from database
     mongoloid m;
-    m.getinfo();
-
-    ifstream bankFile(BANK_IN_PATH);
-    ifstream investmentFile(INVEST_IN_PATH);
-    string bankLine, investLine;
-    if (bankFile.is_open() && investmentFile.is_open()){
-        while (getline(bankFile, bankLine)){
-            cout << bankLine << endl;
-        }
-        cout << "---------------------------------------------------------------------" << endl;
-        while (getline(investmentFile, investLine)){
-            cout << investLine << endl;
-        }
-        bankFile.close(); investmentFile.close();
-    } else{
-        cout << "FAILED ACCESSING DATABASE FILES. EXITING...\n";
-    }
+    m.printBanks();
+    m.printInvestments();
     return 0;
 }

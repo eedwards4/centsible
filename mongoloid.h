@@ -1,6 +1,6 @@
-//
+// mongoDB? More like bongoDB
 // Created by Ethan Edwards on 12/1/2023.
-//
+// Essentially just a wrapper for mongoDB
 
 #ifndef MONGOLOID_H
 #define MONGOLOID_H
@@ -12,19 +12,25 @@
 # endif
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class mongoloid {
 public:
-    int getinfo();
-    int sendinfo();
+    mongoloid();
+    int getFromDB();
+    int sendToDB();
+    void printBanks() const;
+    void printInvestments() const;
 
 private:
-    string BANK_IN_PATH = "mongo/db_input/banks.txt";
-    string INVEST_IN_PATH = "mongo/db_input/investments.txt";
-    string BANK_OUT_PATH = "mongo/db_output/banks.txt";
-    string INVEST_OUT_PATH = "mongo/db_output/investments.txt";
+    vector<vector<string>> bankInfo; // STRUCTURE: [[bank name, acct num, acct name, balance]]
+    vector<vector<string>> investmentInfo; // STRUCTURE: [[ticker, last value, last total, 52 week high, 52 week low]]
+    string BANK_IN_PATH = "mongo/db_output/banks.txt";
+    string INVEST_IN_PATH = "mongo/db_output/investments.txt";
+    string BANK_OUT_PATH = "mongo/db_input/banks.txt";
+    string INVEST_OUT_PATH = "mongo/db_input/investments.txt";
 
 };
 

@@ -4,8 +4,8 @@ Created by Ethan Edwards
 A program for managing multiple banking/investment accounts within a (CURRENTLY NOT SECURE) desktop application.
 
 <h2>Build instructions</h2>
-This project utilizes cmake to build. To install cmake, go to https://cmake.org/download/ and follow the instructions.
-In order to properly interface with a database, you will need to set up your own [mongoDB Atlas account](https://www.mongodb.com/atlas/database) and create the following database
+This project utilizes cmake to build. To install cmake, go to <a href="https://cmake.org/download/">the cmake website</a> and follow the instructions.
+In order to properly interface with a database, you will need to set up your own <a href="https://www.mongodb.com/atlas/database">mongoDB Atlas account</a> and create the following database
 (This keeps your data private, so it's just a little bit important):
 
 --------------------------------------------------------------------
@@ -21,7 +21,7 @@ In order to properly interface with a database, you will need to set up your own
 
 --------------------------------------------------------------------
 
-Once you've created the database, create a file in the /mongo directory named "mongo_login.txt" and populate it with the following information in the following order:
+Once you've created the database, create a file in the <a href="https://github.com/eedwards4/centsible/tree/main/mongo">/mongo</a> directory named "mongo_login.txt" and populate it with the following information in the following order:
 
 <ul>
   <li>Atlas username</li>

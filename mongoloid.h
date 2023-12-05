@@ -23,6 +23,8 @@ public:
     int sendToDB();
     void printBanks() const;
     void printInvestments() const;
+    vector<vector<string>> getBankInfo() const {return bankInfo;}
+    vector<vector<string>> getInvestmentInfo() const {return investmentInfo;}
 
 private:
     vector<vector<string>> bankInfo; // STRUCTURE: [[bank name, acct num, acct name, balance]]

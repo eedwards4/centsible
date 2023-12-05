@@ -5,7 +5,11 @@
 #ifndef CENTSIBLE_MAINWINDOW_H
 #define CENTSIBLE_MAINWINDOW_H
 
+#include <vector>
+
 #include <QMainWindow>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -13,16 +17,21 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
-    Ui::MainWindow *ui{};
+    void updateBankTable(vector<vector<string>> bankInfo);
+    void updateInvestmentTable(vector<vector<string>> investmentInfo);
+    void updateBank(vector<vector<string>> bankInfo);
+    void updateInvestment(vector<vector<string>> investmentInfo);
 
+private:
+    Ui::MainWindow *ui;
 };
 
 #endif //CENTSIBLE_MAINWINDOW_H

@@ -29,7 +29,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Simplex</family>
+      <family>JetBrainsMono Nerd Font Mono</family>
       <pointsize>12</pointsize>
       <bold>true</bold>
      </font>
@@ -38,7 +38,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -55,7 +55,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Simplex</family>
+        <family>JetBrainsMono Nerd Font Mono</family>
         <pointsize>40</pointsize>
         <bold>true</bold>
        </font>
@@ -92,8 +92,180 @@
        <number>10</number>
       </property>
      </widget>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>401</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Total Liquidity</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <widget class="QLabel" name="banking_total_label">
+       <property name="geometry">
+        <rect>
+         <x>8</x>
+         <y>35</y>
+         <width>381</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>JetBrainsMono Nerd Font Mono</family>
+         <pointsize>24</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>$80938470293847</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>110</y>
+        <width>791</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Accounts</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <widget class="QTableWidget" name="accountTable">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>751</width>
+         <height>611</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="addBank">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>220</y>
+        <width>91</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="editBank">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>220</y>
+        <width>91</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="removeBank">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>220</y>
+        <width>91</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>401</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Quick Stats</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <widget class="QGroupBox" name="groupBox_9">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>39</y>
+         <width>371</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>PH FOR YEAR BALANCE GRAPH</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>270</y>
+         <width>371</width>
+         <height>231</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>PH FOR BALANCE GRAPH</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="bankStats">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>220</y>
+        <width>91</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stats</string>
+      </property>
+     </widget>
      <zorder>frame</zorder>
      <zorder>label_bank</zorder>
+     <zorder>groupBox_6</zorder>
+     <zorder>groupBox_7</zorder>
+     <zorder>addBank</zorder>
+     <zorder>editBank</zorder>
+     <zorder>removeBank</zorder>
+     <zorder>groupBox_8</zorder>
+     <zorder>bankStats</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -110,7 +282,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Simplex</family>
+        <family>JetBrainsMono Nerd Font Mono</family>
         <pointsize>40</pointsize>
         <bold>true</bold>
        </font>
@@ -168,6 +340,13 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>JetBrainsMono Nerd Font Mono</family>
+         <pointsize>24</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>$80938470293847</string>
        </property>
@@ -202,7 +381,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="investStats">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -215,7 +394,7 @@
        <string>Stats</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="addInvest">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -228,7 +407,7 @@
        <string>Add</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="editInvest">
       <property name="geometry">
        <rect>
         <x>230</x>
@@ -241,7 +420,7 @@
        <string>Edit</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="removeInvest">
       <property name="geometry">
        <rect>
         <x>330</x>

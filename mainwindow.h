@@ -35,3 +35,5 @@ private:
 };
 
 #endif //CENTSIBLE_MAINWINDOW_H
+
+// Related stock tracker (side by side type shit)

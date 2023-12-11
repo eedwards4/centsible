@@ -49,6 +49,7 @@ int main(int argc, char *argv[]) {
     MainWindow w;
     w.setPalette(darkPalette);
     w.updateInvestment(m.getInvestmentInfo());
+    w.updateBank(m.getBankInfo());
     w.show();
 
     return a.exec();

@@ -17,11 +17,26 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
-
+    ui->accountTable->clear();
+    ui->accountTable->setRowCount(bankInfo.size());
+    ui->accountTable->setColumnCount(4);
+    ui->accountTable->setHorizontalHeaderLabels(QStringList() << "Bank" << "Account Number" << "Account Name" << "Balance");
+    for (int i = 0; i < bankInfo.size(); i++){
+        for (int j = 0; j < bankInfo.at(i).size(); j++){
+            ui->accountTable->setItem(i, j, new QTableWidgetItem(QString::fromStdString(bankInfo.at(i).at(j))));
+        }
+    }
+    QHeaderView* header = ui->accountTable->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void MainWindow::updateBank(vector<vector<string>> bankInfo){
-
+    int total = 0;
+    for (auto i : bankInfo){ // Add all bank balances
+        total += stoi(i.at(3));
+    }
+    ui->banking_total_label->setText(QString::fromStdString("$" + to_string(total)));
+    updateBankTable(bankInfo);
 }
 
 void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){

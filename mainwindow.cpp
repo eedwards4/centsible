@@ -31,6 +31,7 @@ void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
 }
 
 void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> bankRecords){
+    // TODO: REFACTOR TO USE A DATE/NUMBER GRAPH
     time_t t = time(nullptr);
     tm *const pTInfo = localtime(&t);
     int year = 1900 + pTInfo->tm_year;
@@ -59,24 +60,21 @@ void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> ban
     ui->banking_year_graph->show();
     // Update total graph
     QLineSeries *seriestoo = new QLineSeries();
-    int tmpYear = 0, total = 0;
+    int tmpYear = 0;
     for (auto i : bankRecords){
         // TODO: FIX THIS
         // Currently gets total for WHOLE YEAR
         // Need to get total for each month, but make sure that months of different years aren't grouped together
         if (i.first.getYear() != tmpYear){
-            if (tmpYear != 0){
-                seriestoo->append(QPoint(tmpYear, total));
-                total = 0;
-            }
             tmpYear = i.first.getYear();
         } else{
+            int total = 0;
             for (auto j : i.second){
                 total += stoi(j.getBalance());
             }
+            seriestoo->append(QPoint(tmpYear, total));
         }
     }
-    seriestoo->append(QPoint(tmpYear, total));
     QChart *charttoo = new QChart();
     charttoo->legend()->hide();
     charttoo->addSeries(seriestoo);

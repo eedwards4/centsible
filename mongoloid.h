@@ -18,31 +18,33 @@ using namespace std;
 
 class bankRecord{
 public:
-    bankRecord(string date, string name, string balance){
-        this->date = date; this->name = name; this->balance = stoi(balance);
+    bankRecord(string date, string name, string acctNum){
+        this->date = date;
+        this->name = name;
+        this->acctNum = acctNum;
     }
     string getDate(){return date;}
     string getName(){return name;}
-    [[nodiscard]] int getBalance() const {return balance;}
+    string getAcctNum(){return acctNum;}
 
 private:
-    string date, name;
-    int balance;
+    string date, name, acctNum;
 
 };
 
 class stockRecord{
 public:
-    stockRecord(string date, string ticker, string value){
-        this->date = date; this->ticker = ticker; this->value = stoi(value);
+    stockRecord(string date, string ticker, string numShares, string value){
+        this->date = date; this->ticker = ticker; this->numShares = stoi(numShares); this->value = stoi(value);
     }
     string getDate(){return date;}
     string getTicker(){return ticker;}
     [[nodiscard]] int getValue() const {return value;}
+    [[nodiscard]] int getNumShares() const {return numShares;}
 
 private:
     string date, ticker;
-    int value;
+    int numShares = 0, value = 0;
 
 };
 
@@ -61,6 +63,8 @@ public:
     void addInvestment(string ticker);
     void addBankRecord(string date, string name, string balance);
     void addStockRecord(string date, string ticker, string value);
+    void removeBank(string accountNum);
+    void removeInvestment(string ticker);
 
 private:
     vector<vector<string>> bankInfo; // STRUCTURE: [[bank name, acct num, acct name, balance]]
@@ -68,14 +72,15 @@ private:
     vector<pair<string, vector<bankRecord>>> bankRecords; // STRUCTURE: [[date, bankRecords]]
     vector<pair<string, vector<stockRecord>>> stockRecords; // STRUCTURE: [[date, stockRecords]]
     // Paths
-    string BANK_IN_PATH = "mongo/db_output/banks.txt";
-    string INVEST_IN_PATH = "mongo/db_output/investments.txt";
     string BANK_OUT_PATH = "mongo/db_input/banks.txt";
+    string BANK_IN_PATH = "mongo/db_output/banks.txt";
+    string DELETIONS_PATH = "mongo/db_input/deletions.txt";
+    string INVEST_IN_PATH = "mongo/db_output/investments.txt";
     string INVEST_OUT_PATH = "mongo/db_input/investments.txt";
     string BANK_RECORDS_PATH = "mongo/db_output/bank_records.txt";
-    string STOCK_RECORDS_PATH = "mongo/db_output/stock_records.txt";
+    string STOCK_RECORDS_PATH = "mongo/db_output/investment_records.txt";
     string BANK_RECORDS_OUT_PATH = "mongo/db_input/bank_records.txt";
-    string STOCK_RECORDS_OUT_PATH = "mongo/db_input/stock_records.txt";
+    string STOCK_RECORDS_OUT_PATH = "mongo/db_input/investment_records.txt";
 
 };
 

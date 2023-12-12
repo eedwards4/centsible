@@ -31,6 +31,10 @@ public:
     // Main table update handlers
     void updateBankTable(vector<vector<string>> bankInfo);
     void updateInvestmentTable(vector<vector<string>> investmentInfo);
+    // Graph update handlers
+    void updateBankGraphs(vector<pair<string, vector<bankRecord>>> bankRecords);
+    void updateInvestmentGraphs(vector<pair<string, vector<stockRecord>>> stockRecords);
+    // Update controllers
     void updateBank();
     void updateInvestment();
 

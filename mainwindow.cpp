@@ -30,6 +30,10 @@ void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+void MainWindow::updateBankGraphs(vector<pair<string, vector<bankRecord>>> bankRecords){
+
+}
+
 void MainWindow::updateBank(){
     vector<vector<string>> bankInfo = m.getBankInfo();
     int total = 0;
@@ -52,6 +56,9 @@ void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){
     }
     QHeaderView* header = ui->investmentTable->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void MainWindow::updateInvestmentGraphs(vector<pair<string, vector<stockRecord>>> stockRecords){
 }
 
 void MainWindow::updateInvestment(){

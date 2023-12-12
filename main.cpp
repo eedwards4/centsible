@@ -19,9 +19,6 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    // Get info from database
-    mongoloid m;
-
     // Set up QT
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon("centsible_logo.png"));

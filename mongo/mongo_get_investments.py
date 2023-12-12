@@ -9,6 +9,7 @@ def main():
 
     try:
         os.remove('db_output/investments.txt')
+        os.remove('db_output/investment_records.txt')
     except OSError:
         pass
 
@@ -27,8 +28,10 @@ def main():
     print("Connection successful. Retrieving data...")
 
     db = client.data
+    chrono_db = client.chrono_data
 
     collection = db['investments']
+    chrono_collection = chrono_db['investments']
 
     # Access database and send the results to a file
     with open('db_output/investments.txt', 'w') as file:
@@ -42,6 +45,17 @@ def main():
             file.write("END\n")
         file.close()
         print("Data retrieved successfully.")
+
+    print("Retrieving chrono data...")
+    with open('db_output/investment_records.txt', 'w') as file:
+        for obj in chrono_collection.find():
+            file.write(str(obj["date"]) + '\n')
+            file.write(obj["ticker"] + '\n')
+            file.write(str(obj["num_shares"]) + '\n')
+            file.write(str(obj["last_total_value"]) + '\n')
+            file.write("END\n")
+        file.close()
+        print("Chrono data retrieved successfully.")
 
 
 if __name__ == '__main__':

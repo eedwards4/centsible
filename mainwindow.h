@@ -6,6 +6,7 @@
 #define CENTSIBLE_MAINWINDOW_H
 
 #include <vector>
+#include <ctime>
 
 #include <QMainWindow>
 #include <QCloseEvent>
@@ -46,8 +47,8 @@ private:
     void updateBankTable(vector<vector<string>> bankInfo);
     void updateInvestmentTable(vector<vector<string>> investmentInfo);
     // Graph update handlers
-    void updateBankGraphs(vector<pair<string, vector<bankRecord>>> bankRecords);
-    void updateInvestmentGraphs(vector<pair<string, vector<stockRecord>>> stockRecords);
+    void updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> bankRecords);
+    void updateInvestmentGraphs(vector<pair<dateTime, vector<stockRecord>>> stockRecords);
 
 };
 

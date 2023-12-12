@@ -11,6 +11,7 @@ mongoloid::mongoloid(){
     getFromDB();
 }
 
+
 int mongoloid::getFromDB() {
     string command;
     // change command depending on OS
@@ -59,17 +60,18 @@ int mongoloid::getFromDB() {
             balance = bankRecordsLine;
             getline(bankRecordsFile, bankRecordsLine);
             if (bankRecordsLine == "END"){
+                dateTime tmpDate = convertToDateTime(date);
                 bool found = false;
                 for (auto & [fst, snd] : bankRecords){
-                    if (fst == date){
-                        snd.emplace_back(date, acctNum, balance);
+                    if (fst == tmpDate){
+                        snd.emplace_back(tmpDate, acctNum, balance);
                         found = true;
                     }
                 }
                 if (!found){
                     vector<bankRecord> tmp2;
-                    tmp2.emplace_back(date, acctNum, balance);
-                    bankRecords.emplace_back(date, tmp2);
+                    tmp2.emplace_back(tmpDate, acctNum, balance);
+                    bankRecords.emplace_back(tmpDate, tmp2);
                 }
             }
         }
@@ -88,17 +90,18 @@ int mongoloid::getFromDB() {
             value = stockRecordsLine;
             getline(stockRecordsFile, stockRecordsLine);
             if (stockRecordsLine == "END"){
+                dateTime tmpDate = convertToDateTime(date);
                 bool found = false;
                 for (auto & [fst, snd] : stockRecords){
-                    if (fst == date){
-                        snd.emplace_back(date, ticker, numShares, value);
+                    if (fst == tmpDate){
+                        snd.emplace_back(tmpDate, ticker, numShares, value);
                         found = true;
                     }
                 }
                 if (!found){
                     vector<stockRecord> tmp2;
-                    tmp2.emplace_back(date, ticker, numShares, value);
-                    stockRecords.emplace_back(date, tmp2);
+                    tmp2.emplace_back(tmpDate, ticker, numShares, value);
+                    stockRecords.emplace_back(tmpDate, tmp2);
                 }
             }
         }
@@ -131,9 +134,8 @@ int mongoloid::sendToDB() {
         investmentOut << "END\n";
     }
     for (auto i : bankRecords){
-        bankRecordsOut << i.first << "\n";
         for (auto j : i.second){
-            bankRecordsOut << j.getDate() << "\n";
+            bankRecordsOut << j.getDate().getAsDate() << "\n";
             bankRecordsOut << j.getAcctNum() << "\n";
             bankRecordsOut << j.getBalance() << "\n";
             bankRecordsOut << "END\n";
@@ -141,7 +143,7 @@ int mongoloid::sendToDB() {
     }
     for (auto i : stockRecords){
         for (auto j : i.second){
-            stockRecordsOut << j.getDate() << "\n";
+            stockRecordsOut << j.getDate().getAsDate() << "\n";
             stockRecordsOut << j.getTicker() << "\n";
             stockRecordsOut << j.getNumShares() << "\n";
             stockRecordsOut << j.getValue() << "\n";
@@ -168,31 +170,33 @@ void mongoloid::addInvestment(string ticker) {
 
 void mongoloid::addBankRecord(string date, string name, string balance) {
     bool found = false;
+    dateTime tmpDate = convertToDateTime(date);
     for (auto & i : bankRecords){
-        if (i.first == date){
-            i.second.emplace_back(date, name, balance);
+        if (i.first == tmpDate){
+            i.second.emplace_back(tmpDate, name, balance);
             found = true;
         }
     }
     if (!found){
         vector<bankRecord> tmp;
-        tmp.emplace_back(date, name, balance);
-        bankRecords.emplace_back(date, tmp);
+        tmp.emplace_back(tmpDate, name, balance);
+        bankRecords.emplace_back(tmpDate, tmp);
     }
 }
 
 void mongoloid::addStockRecord(string date, string ticker, string value) {
     bool found = false;
+    dateTime tmpDate = convertToDateTime(date);
     for (auto & i : stockRecords){
-        if (i.first == date){
-            i.second.emplace_back(date, ticker, "0", value);
+        if (i.first == tmpDate){
+            i.second.emplace_back(tmpDate, ticker, "0", value);
             found = true;
         }
     }
     if (!found){
         vector<stockRecord> tmp;
-        tmp.emplace_back(date, ticker, "0", value);
-        stockRecords.emplace_back(date, tmp);
+        tmp.emplace_back(tmpDate, ticker, "0", value);
+        stockRecords.emplace_back(tmpDate, tmp);
     }
 }
 
@@ -218,4 +222,15 @@ void mongoloid::removeInvestment(string ticker) {
             break;
         }
     }
+}
+
+dateTime mongoloid::convertToDateTime(string date){
+    string year = date.substr(0, date.find('-'));
+    date.erase(0, date.find('-') + 1);
+    string month = date.substr(0, date.find('-'));
+    date.erase(0, date.find('-') + 1);
+    string day = date.substr(0, date.find(' '));
+    date.erase(0, date.find(' ') + 1);
+    string time = date;
+    return dateTime(stoi(year), stoi(month), stoi(day), time);
 }

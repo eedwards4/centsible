@@ -31,7 +31,36 @@ void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
 }
 
 void MainWindow::updateBankGraphs(vector<pair<string, vector<bankRecord>>> bankRecords){
-
+    // Update year graph
+    QLineSeries *series = new QLineSeries();
+    for (auto i : bankRecords){
+        int total = 0;
+        for (auto j : i.second){
+            total += stoi(j.getBalance());
+        }
+        string month = i.first.substr(i.first.find('-') + 1, i.first.find('-'));
+        series->append(QPoint(stoi(month), total));
+    }
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Balance over 1 year");
+    // Embed the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    ui->banking_year_graph->setChart(chart);
+    ui->banking_year_graph->setRenderHint(QPainter::Antialiasing);
+    ui->banking_year_graph->show();
+    // Update total graph
+    QLineSeries *seriestoo = new QLineSeries();
+    for (auto i : bankRecords){
+        int total = 0;
+        for (auto j : i.second){
+            total += stoi(j.getBalance());
+        }
+        // TODO: MODIFY THE WAY DATE IS STORED SO WE CAN SORT BY MONTH/YEAR
+    }
 }
 
 void MainWindow::updateBank(){
@@ -42,6 +71,7 @@ void MainWindow::updateBank(){
     }
     ui->banking_total_label->setText(QString::fromStdString("$" + to_string(total)));
     updateBankTable(bankInfo);
+    updateBankGraphs(m.getBankRecords());
 }
 
 void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){

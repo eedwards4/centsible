@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Charts)
 
 #if (APPLE)
 #    message("CMAKE found OSX system. If this is not correct please abort!")
@@ -22,7 +22,7 @@ add_executable(Centsible main.cpp
         mainwindow.cpp mainwindow.h
         mongoloid.cpp mongoloid.h)
 
-target_link_libraries(Centsible PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Centsible PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)
 
 # Copy resources to build directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/mongo DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

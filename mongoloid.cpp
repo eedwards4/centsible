@@ -51,24 +51,24 @@ int mongoloid::getFromDB() {
     if (bankRecordsFile.is_open()){
         string bankRecordsLine;
         while (getline(bankRecordsFile, bankRecordsLine)){
-            string date, name, acctNum;
+            string date, acctNum, balance;
             date = bankRecordsLine;
             getline(bankRecordsFile, bankRecordsLine);
-            name = bankRecordsLine;
-            getline(bankRecordsFile, bankRecordsLine);
             acctNum = bankRecordsLine;
+            getline(bankRecordsFile, bankRecordsLine);
+            balance = bankRecordsLine;
             getline(bankRecordsFile, bankRecordsLine);
             if (bankRecordsLine == "END"){
                 bool found = false;
                 for (auto & [fst, snd] : bankRecords){
                     if (fst == date){
-                        snd.emplace_back(date, name, acctNum);
+                        snd.emplace_back(date, acctNum, balance);
                         found = true;
                     }
                 }
                 if (!found){
                     vector<bankRecord> tmp2;
-                    tmp2.emplace_back(date, name, acctNum);
+                    tmp2.emplace_back(date, acctNum, balance);
                     bankRecords.emplace_back(date, tmp2);
                 }
             }
@@ -134,8 +134,8 @@ int mongoloid::sendToDB() {
         bankRecordsOut << i.first << "\n";
         for (auto j : i.second){
             bankRecordsOut << j.getDate() << "\n";
-            bankRecordsOut << j.getName() << "\n";
             bankRecordsOut << j.getAcctNum() << "\n";
+            bankRecordsOut << j.getBalance() << "\n";
             bankRecordsOut << "END\n";
         }
     }

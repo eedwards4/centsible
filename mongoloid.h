@@ -18,17 +18,17 @@ using namespace std;
 
 class bankRecord{
 public:
-    bankRecord(string date, string name, string acctNum){
+    bankRecord(string date, string acctNum, string balance){
         this->date = date;
-        this->name = name;
+        this->balance = balance;
         this->acctNum = acctNum;
     }
     string getDate(){return date;}
-    string getName(){return name;}
+    string getBalance(){return balance;}
     string getAcctNum(){return acctNum;}
 
 private:
-    string date, name, acctNum;
+    string date, acctNum, balance;
 
 };
 

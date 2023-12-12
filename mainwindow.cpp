@@ -11,11 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
     delete ui;
 }
 
+// DB interaction handlers
 void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
     ui->accountTable->clear();
     ui->accountTable->setRowCount(bankInfo.size());
@@ -30,7 +30,8 @@ void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void MainWindow::updateBank(vector<vector<string>> bankInfo){
+void MainWindow::updateBank(){
+    vector<vector<string>> bankInfo = m.getBankInfo();
     int total = 0;
     for (auto i : bankInfo){ // Add all bank balances
         total += stoi(i.at(3));
@@ -53,11 +54,17 @@ void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void MainWindow::updateInvestment(vector<vector<string>> investmentInfo){
+void MainWindow::updateInvestment(){
+    vector<vector<string>> investmentInfo = m.getInvestmentInfo();
     int total = 0;
     for (auto i : investmentInfo){ // Add all investment totals
         total += stoi(i.at(3));
     }
     ui->invest_total_label->setText(QString::fromStdString("$" + to_string(total)));
     updateInvestmentTable(investmentInfo);
+}
+
+// Element linkages
+void MainWindow::closeEvent(QCloseEvent *event){ // Handle database update on close
+    // m.sendToDB();
 }

@@ -24,6 +24,7 @@ def main():
         url = credentials[2].strip()
         file.close()
     client = pymongo.MongoClient('mongodb+srv://{}:{}{}/?retryWrites=true&w=majority'.format(login, password, url))
+    print("Connection successful. Retrieving data...")
 
     db = client.data
 
@@ -40,6 +41,7 @@ def main():
             file.write(str(obj["52_week_l"]) + '\n')
             file.write("END\n")
         file.close()
+        print("Data retrieved successfully.")
 
 
 if __name__ == '__main__':

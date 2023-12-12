@@ -8,6 +8,9 @@
 #include <vector>
 
 #include <QMainWindow>
+#include <QCloseEvent>
+
+#include "mongoloid.h"
 
 using namespace std;
 
@@ -25,13 +28,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // Main table update handlers
     void updateBankTable(vector<vector<string>> bankInfo);
     void updateInvestmentTable(vector<vector<string>> investmentInfo);
-    void updateBank(vector<vector<string>> bankInfo);
-    void updateInvestment(vector<vector<string>> investmentInfo);
+    void updateBank();
+    void updateInvestment();
+
+    // Element linkages
+    void closeEvent(QCloseEvent* event) override;
 
 private:
     Ui::MainWindow *ui;
+    mongoloid m;
+
 };
 
 #endif //CENTSIBLE_MAINWINDOW_H

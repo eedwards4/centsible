@@ -7,11 +7,14 @@
 
 #include <vector>
 #include <ctime>
+#include <string>
 
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QtCharts>
+#include <QValueAxis>
 #include <QGraphicsView>
+#include <QWindow>
 
 #include "mongoloid.h"
 
@@ -49,6 +52,17 @@ private:
     // Graph update handlers
     void updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> bankRecords);
     void updateInvestmentGraphs(vector<pair<dateTime, vector<stockRecord>>> stockRecords);
+
+private slots:
+    void on_update_clicked();
+    void on_bank_stats_clicked();
+    void on_investment_stats_clicked();
+    void on_bank_add_clicked();
+    void on_investment_add_clicked();
+    void on_bank_edit_clicked();
+    void on_investment_edit_clicked();
+    void on_bank_remove_clicked();
+    void on_investment_remove_clicked();
 
 };
 

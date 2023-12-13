@@ -14,6 +14,10 @@ mongoloid::mongoloid(){
 
 int mongoloid::getFromDB() {
     string command;
+    bankInfo.clear();
+    investmentInfo.clear();
+    bankRecords.clear();
+    stockRecords.clear();
     // change command depending on OS
     if constexpr(OS == "Windows"){command = "cd mongo && mongo_get_bank.py && mongo_get_investments.py";}
     else{command = "cd mongo && python3 mongo_get_bank.py && python3 mongo_get_investments.py";}

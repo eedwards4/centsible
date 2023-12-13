@@ -8,15 +8,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Charts)
+set(CMAKE_PREFIX_PATH "C:/Qt/6.6.1/mingw_64")
 
-#if (APPLE)
-#    message("CMAKE found OSX system. If this is not correct please abort!")
-#    set(CMAKE_PREFIX_PATH "/usr/local/cellar/qt/6.6.0")
-#elseif (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
-#    message("CMAKE found windows system. If this is not correct please abort!")
-#    set(CMAKE_PREFIX_PATH "C:/Qt/6.6.1/mingw_64/bin")
-#endif ()
+find_package(Qt6 REQUIRED COMPONENTS Widgets Charts QUIET)
 
 add_executable(Centsible main.cpp
         mainwindow.cpp mainwindow.h

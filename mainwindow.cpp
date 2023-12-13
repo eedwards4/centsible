@@ -9,6 +9,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QObject::connect(ui->update_banking, SIGNAL (clicked()), this, SLOT (on_update_clicked()));
+    QObject::connect(ui->update_investment, SIGNAL (clicked()), this, SLOT (on_update_clicked()));
+    // QObject::connect(ui->addBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_add_clicked()));
+    // QObject::connect(ui->editBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_edit_clicked()));
+    // QObject::connect(ui->removeBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_remove_clicked()));
+    // QObject::connect(ui->addInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_add_clicked()));
+    // QObject::connect(ui->editInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_edit_clicked()));
+    // QObject::connect(ui->removeInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_remove_clicked()));
+    // QObject::connect(ui->bankStats, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_stats_clicked()));
+    // QObject::connect(ui->investStats, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_stats_clicked()));
 }
 
 MainWindow::~MainWindow(){
@@ -44,13 +55,23 @@ void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> ban
             for (auto j : i.second){
                 total += stoi(j.getBalance());
             }
+            QDateTime date;
+            date.setDate(QDate(i.first.getYear(), i.first.getMonth(), i.first.getDay()));
             series->append(QPoint(i.first.getMonth(), total));
         }
     }
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->addSeries(series);
-    chart->createDefaultAxes();
+    auto axisx = new QDateTimeAxis;
+    axisx->setTickCount(12);
+    axisx->setFormat("MMM");
+    chart->addAxis(axisx, Qt::AlignBottom);
+    series->attachAxis(axisx);
+    auto axisy = new QValueAxis;
+    axisy->setLabelFormat("%i");
+    chart->addAxis(axisy, Qt::AlignLeft);
+    series->attachAxis(axisy);
     chart->setTitle("Balance over 1 year");
     // Embed the chart
     QChartView *chartView = new QChartView(chart);
@@ -130,3 +151,43 @@ void MainWindow::updateInvestment(){
 void MainWindow::closeEvent(QCloseEvent *event){ // Handle database update on close
     // m.sendToDB();
 }
+
+void MainWindow::on_update_clicked(){
+    m.getFromDB();
+    updateBank();
+    updateInvestment();
+}
+
+void MainWindow::on_bank_stats_clicked(){
+    // BankStats *b = new BankStats();
+    // b->show();
+}
+
+void MainWindow::on_investment_stats_clicked(){
+    return;
+}
+
+void MainWindow::on_bank_add_clicked(){
+    return;
+}
+
+void MainWindow::on_investment_add_clicked(){
+    return;
+}
+
+void MainWindow::on_bank_edit_clicked(){
+    return;
+}
+
+void MainWindow::on_investment_edit_clicked(){
+    return;
+}
+
+void MainWindow::on_bank_remove_clicked(){
+    return;
+}
+
+void MainWindow::on_investment_remove_clicked(){
+    return;
+}
+

@@ -5,10 +5,12 @@
 #ifndef CENTSIBLE_MAINWINDOW_H
 #define CENTSIBLE_MAINWINDOW_H
 
+// STD
 #include <vector>
 #include <ctime>
 #include <string>
 
+// QT
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QtCharts>
@@ -16,7 +18,12 @@
 #include <QGraphicsView>
 #include <QWindow>
 
+// APIS
 #include "mongoloid.h"
+
+// Sub windows
+#include "BankAdd.h"
+#include "InvestmentAdd.h"
 
 using namespace std;
 using namespace Qt;

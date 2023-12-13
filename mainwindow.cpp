@@ -12,14 +12,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     QObject::connect(ui->update_banking, SIGNAL (clicked()), this, SLOT (on_update_clicked()));
     QObject::connect(ui->update_investment, SIGNAL (clicked()), this, SLOT (on_update_clicked()));
-    // QObject::connect(ui->addBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_add_clicked()));
-    // QObject::connect(ui->editBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_edit_clicked()));
-    // QObject::connect(ui->removeBank, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_remove_clicked()));
-    // QObject::connect(ui->addInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_add_clicked()));
-    // QObject::connect(ui->editInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_edit_clicked()));
-    // QObject::connect(ui->removeInvest, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_remove_clicked()));
-    // QObject::connect(ui->bankStats, SIGNAL (QPushButton::clicked), this, SLOT (on_bank_stats_clicked()));
-    // QObject::connect(ui->investStats, SIGNAL (QPushButton::clicked), this, SLOT (on_investment_stats_clicked()));
+    QObject::connect(ui->addBank, SIGNAL (clicked()), this, SLOT (on_bank_add_clicked()));
+    QObject::connect(ui->editBank, SIGNAL (clicked()), this, SLOT (on_bank_edit_clicked()));
+    QObject::connect(ui->removeBank, SIGNAL (clicked()), this, SLOT (on_bank_remove_clicked()));
+    QObject::connect(ui->addInvest, SIGNAL (clicked()), this, SLOT (on_investment_add_clicked()));
+    QObject::connect(ui->editInvest, SIGNAL (clicked()), this, SLOT (on_investment_edit_clicked()));
+    QObject::connect(ui->removeInvest, SIGNAL (clicked()), this, SLOT (on_investment_remove_clicked()));
+    QObject::connect(ui->bankStats, SIGNAL (clicked()), this, SLOT (on_bank_stats_clicked()));
+    QObject::connect(ui->investStats, SIGNAL (clicked()), this, SLOT (on_investment_stats_clicked()));
 }
 
 MainWindow::~MainWindow(){
@@ -159,8 +159,7 @@ void MainWindow::on_update_clicked(){
 }
 
 void MainWindow::on_bank_stats_clicked(){
-    // BankStats *b = new BankStats();
-    // b->show();
+    return;
 }
 
 void MainWindow::on_investment_stats_clicked(){
@@ -168,11 +167,13 @@ void MainWindow::on_investment_stats_clicked(){
 }
 
 void MainWindow::on_bank_add_clicked(){
-    return;
+    BankAdd *b = new BankAdd();
+    b->show();
 }
 
 void MainWindow::on_investment_add_clicked(){
-    return;
+    InvestmentAdd *i = new InvestmentAdd();
+    i->show();
 }
 
 void MainWindow::on_bank_edit_clicked(){

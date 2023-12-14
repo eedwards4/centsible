@@ -17,6 +17,7 @@ add_executable(Centsible main.cpp
         BankAdd.cpp BankAdd.h
         BankDelete.cpp BankDelete.h
         InvestmentAdd.cpp InvestmentAdd.h
+        InvestmentDelete.cpp InvestmentDelete.h
         mongoloid.cpp mongoloid.h)
 
 target_link_libraries(Centsible PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)

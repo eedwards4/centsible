@@ -190,6 +190,7 @@ void MainWindow::on_bank_remove_clicked(){
 }
 
 void MainWindow::on_investment_remove_clicked(){
-    return;
+    InvestmentDelete *i = new InvestmentDelete();
+    i->show();
 }
 

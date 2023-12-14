@@ -24,6 +24,7 @@
 // Sub windows
 #include "BankAdd.h"
 #include "InvestmentAdd.h"
+#include "BankDelete.h"
 
 using namespace std;
 using namespace Qt;

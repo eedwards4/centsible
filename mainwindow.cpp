@@ -185,7 +185,8 @@ void MainWindow::on_investment_edit_clicked(){
 }
 
 void MainWindow::on_bank_remove_clicked(){
-    return;
+    BankDelete *b = new BankDelete();
+    b->show();
 }
 
 void MainWindow::on_investment_remove_clicked(){

@@ -15,6 +15,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets Charts QUIET)
 add_executable(Centsible main.cpp
         mainwindow.cpp mainwindow.h
         BankAdd.cpp BankAdd.h
+        BankDelete.cpp BankDelete.h
         InvestmentAdd.cpp InvestmentAdd.h
         mongoloid.cpp mongoloid.h)
 

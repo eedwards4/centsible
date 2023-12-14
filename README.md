@@ -17,6 +17,14 @@ In order to properly interface with a database, you will need to set up your own
       <li>investments</li>
     </ul>
   </li>
+  <li><b>database name</b>: chrono_data</li>
+  <li>
+    <b>collections:</b>
+    <ul>
+      <li>banks</li>
+      <li>investments</li>
+    </ul>
+  </li>
 </ul>
 
 --------------------------------------------------------------------
@@ -28,6 +36,9 @@ Once you've created the database, create a file in the <a href="https://github.c
   <li>Atlas password</li>
   <li><b>ONLY THIS PART OF THE ACCESS URL:</b> [@centsibleexample.i6gri7x.mongodb.net] : <i>Your url should look similar, but not identical to this one</i></li>
 </ul>
+
+This project uses <a href="https://www.qt.io/blog/qt-6.6.1-released">QT 6.6.1</a> for its GUI. QT has a few <b>very</b> annoying bugs.
+If you are experiencing issues compiling, please refer to <a href="https://github.com/eedwards4/centsible/blob/main/bugfix.txt">this bugfix file</a> for more infomation on known issues.
 
 <h2>Run instructions</h2>
 Just run the program! Currently there are no runtime arguments so all you need to do is double-click.

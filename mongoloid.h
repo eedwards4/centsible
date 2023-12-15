@@ -87,7 +87,7 @@ public:
     // Setters
     int sendToDB();
     void addBank(string name, string acctNum, string acctName, string balance);
-    void addInvestment(string ticker);
+    void addInvestment(string ticker, string shares);
     void addBankRecord(string date, string name, string balance);
     void addStockRecord(string date, string ticker, string value);
     void removeBank(string accountNum);

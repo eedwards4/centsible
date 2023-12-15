@@ -21,10 +21,17 @@ InvestmentAdd::~InvestmentAdd(){
 
 void InvestmentAdd::on_add_clicked(){
     string ticker = ui->ticker_box->text().toStdString();
-    if (ticker == "Stock ticker"){
+    string shares = ui->shares_box->text().toStdString();
+    try{
+       stoi(shares);
+    } catch (exception& e){
+        QMessageBox::warning(this, "Error", "Please enter a valid number of shares");
+    }
+    if (ticker == "Stock ticker" || shares == "Num. Shares"){
         QMessageBox::warning(this, "Error", "Please fill out all fields");
     } else{
-        return;
+        emit addInvestment(ticker, shares);
+        this->close();
     }
 }
 

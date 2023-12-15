@@ -72,6 +72,10 @@ private slots:
     void on_investment_edit_clicked();
     void on_bank_remove_clicked();
     void on_investment_remove_clicked();
+    void addBank(string bankName, string acctNum, string acctName, string balance);
+    void deleteBank(string toDel);
+    void addInvestment(string ticker, string shares);
+    void deleteInvestment(string toDel);
 
 };
 

@@ -18,6 +18,9 @@ public:
     explicit InvestmentDelete(QWidget *parent = nullptr);
     ~InvestmentDelete();
 
+signals:
+    void deleteInvestment(std::string ticker);
+
 private:
     Ui::InvestmentDelete *ui;
 

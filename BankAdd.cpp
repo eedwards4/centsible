@@ -27,7 +27,8 @@ void BankAdd::on_add_clicked(){
     if (bankName == "Bank name" || acctNum == "Account number" || acctName == "Account name" || balance == "Balance"){
         QMessageBox::warning(this, "Error", "Please fill out all fields");
     } else{
-        return;
+        emit addBank(bankName, acctNum, acctName, balance);
+        this->close();
     }
 }
 

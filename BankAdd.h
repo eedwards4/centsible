@@ -18,6 +18,9 @@ public:
     explicit BankAdd(QWidget *parent = nullptr);
     ~BankAdd();
 
+signals:
+    void addBank(std::string bankName, std::string acctNum, std::string acctName, std::string balance);
+
 private:
     Ui::BankAdd *ui;
 

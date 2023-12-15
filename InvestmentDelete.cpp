@@ -24,7 +24,8 @@ void InvestmentDelete::on_delete_clicked(){
     if (ticker == "Ticker"){
         QMessageBox::warning(this, "Error", "Please fill out all fields");
     } else{
-        return;
+        emit deleteInvestment(ticker);
+        this->close();
     }
 }
 

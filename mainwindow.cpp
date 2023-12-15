@@ -124,7 +124,7 @@ void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){
     ui->investmentTable->clear();
     ui->investmentTable->setRowCount(investmentInfo.size());
     ui->investmentTable->setColumnCount(5);
-    ui->investmentTable->setHorizontalHeaderLabels(QStringList() << "Ticker" << "Last Value" << "Last Total" << "52 Week High" << "52 Week Low");
+    ui->investmentTable->setHorizontalHeaderLabels(QStringList() << "Ticker" << "Shares" << "Per-Share" << "Total" << "52 Week High");
     for (int i = 0; i < investmentInfo.size(); i++){
         for (int j = 0; j < investmentInfo.at(i).size(); j++){
             ui->investmentTable->setItem(i, j, new QTableWidgetItem(QString::fromStdString(investmentInfo.at(i).at(j))));
@@ -159,38 +159,62 @@ void MainWindow::on_update_clicked(){
 }
 
 void MainWindow::on_bank_stats_clicked(){
-    return;
+    QMessageBox::warning(this, "Get R3kt", "Sorry, this button is not yet implemented!");
 }
 
 void MainWindow::on_investment_stats_clicked(){
-    return;
+    QMessageBox::warning(this, "Get R3kt", "Sorry, this button is not yet implemented!");
 }
 
 void MainWindow::on_bank_add_clicked(){
     BankAdd *b = new BankAdd();
+    connect(b, &BankAdd::addBank, this, &MainWindow::addBank);
     b->show();
+}
+
+void MainWindow::addBank(string name, string acctNum, string acctName, string balance){
+    m.addBank(name, acctNum, acctName, balance);
+    updateBank();
 }
 
 void MainWindow::on_investment_add_clicked(){
     InvestmentAdd *i = new InvestmentAdd();
+    connect(i, &InvestmentAdd::addInvestment, this, &MainWindow::addInvestment);
     i->show();
+}
+
+void MainWindow::addInvestment(string ticker, string shares){
+    m.addInvestment(ticker, shares);
+    updateInvestment();
 }
 
 void MainWindow::on_bank_edit_clicked(){
-    return;
+    QMessageBox::warning(this, "Get R3kt", "Sorry, this button is not yet implemented!");
 }
 
 void MainWindow::on_investment_edit_clicked(){
-    return;
+    QMessageBox::warning(this, "Get R3kt", "Sorry, this button is not yet implemented!");
 }
 
 void MainWindow::on_bank_remove_clicked(){
-    BankDelete *b = new BankDelete();
+    BankDelete *b = new BankDelete(this);
+    connect(b, &BankDelete::deleteBank, this, &MainWindow::deleteBank);
     b->show();
 }
 
+void MainWindow::deleteBank(string toDel){
+    m.removeBank(toDel);
+    updateBank();
+}
+
 void MainWindow::on_investment_remove_clicked(){
-    InvestmentDelete *i = new InvestmentDelete();
+    InvestmentDelete *i = new InvestmentDelete(this);
+    connect(i, &InvestmentDelete::deleteInvestment, this, &MainWindow::deleteInvestment);
     i->show();
+}
+
+void MainWindow::deleteInvestment(string toDel){
+    m.removeInvestment(toDel);
+    updateInvestment();
 }
 

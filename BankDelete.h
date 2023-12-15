@@ -7,6 +7,8 @@
 
 #include <QtWidgets>
 
+#include <string>
+
 namespace Ui {
     class BankDelete;
 }
@@ -17,6 +19,9 @@ class BankDelete : public QDialog{
 public:
     explicit BankDelete(QWidget *parent = nullptr);
     ~BankDelete();
+
+signals:
+    void deleteBank(std::string toDel);
 
 private:
     Ui::BankDelete *ui;

@@ -66,9 +66,9 @@
    <widget class="QLineEdit" name="ticker_box">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>100</y>
-      <width>171</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -103,6 +103,22 @@
     </property>
     <property name="text">
      <string>CANCEL</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="shares_box">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>100</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Num. Shares</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

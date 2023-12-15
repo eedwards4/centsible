@@ -18,6 +18,9 @@ public:
     explicit InvestmentAdd(QWidget *parent = nullptr);
     ~InvestmentAdd();
 
+signals:
+    void addInvestment(std::string ticker, std::string shares);
+
 private:
     Ui::InvestmentAdd *ui;
 

@@ -5,8 +5,6 @@
 #include "BankDelete.h"
 #include "ui_bankdelete.h"
 
-#include <string>
-
 using namespace std;
 
 BankDelete::BankDelete(QWidget* parent) : QDialog(parent), ui(new Ui::BankDelete){
@@ -20,11 +18,12 @@ BankDelete::~BankDelete(){
 }
 
 void BankDelete::on_delete_clicked(){
-    string acctNum = ui->account_number_box->text().toStdString();
-    if (acctNum == "Account number"){
+    string toDel = ui->account_number_box->text().toStdString();
+    if (toDel == "Account number"){
         QMessageBox::warning(this, "Error", "Please fill out all fields");
     } else{
-        return;
+        emit deleteBank(toDel);
+        this->close();
     }
 }
 

@@ -168,8 +168,9 @@ void mongoloid::addBank(string name, string acctNum, string acctName, string bal
     bankInfo.emplace_back(vector<string>{name, acctNum, acctName, balance});
 }
 
-void mongoloid::addInvestment(string ticker) {
-    investmentInfo.emplace_back(vector<string>{ticker, "0", "0", "0", "0"});
+void mongoloid::addInvestment(string ticker, string shares) {
+    // TODO: USE SOME KIND OF API TO GET STOCK INFO
+    investmentInfo.emplace_back(vector<string>{ticker, shares, "0", "0", "0"});
 }
 
 void mongoloid::addBankRecord(string date, string name, string balance) {

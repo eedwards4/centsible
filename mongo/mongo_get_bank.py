@@ -48,7 +48,7 @@ def main():
     with open('db_output/bank_records.txt', 'w') as file:
         for obj in chrono_collection.find():
             file.write(str(obj["date"]) + '\n')
-            file.write(str(obj["account_num"]) + '\n')
+            file.write(obj["account_num"] + '\n')
             file.write(str(obj["balance"]) + '\n')
             file.write("END\n")
         file.close()

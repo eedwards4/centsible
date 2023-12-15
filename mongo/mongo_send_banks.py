@@ -41,20 +41,21 @@ def main():
         file.close()
         print("Data sent successfully.")
 
-    print("Sending chrono data...")
-    with open('db_input/bank_records.txt', 'r') as file:
-        # For each record in the file, check if it's date already exists in the database. If it does not, add it.
-        while True:
-            date = file.readline().strip()
-            if date == '':
-                break
-            account_num = file.readline().strip()
-            balance = float(file.readline().strip())
-            file.readline()  # Skip the END line
-            if chrono_collection.count_documents({'date': date, 'account_num': account_num}) == 0:
-                chrono_collection.insert_one({'date': date, 'account_num': account_num, 'balance': balance})
-        file.close()
-        print("Chrono data sent successfully.")
+#    TODO: FIX WHATEVER IS WRONG WITH THIS
+#    print("Sending chrono data...")
+#    with open('db_input/bank_records.txt', 'r') as file:
+#        # For each record in the file, check if it's date already exists in the database. If it does not, add it.
+#        while True:
+#            date = file.readline().strip()
+#            if date == '':
+#                break
+#            account_num = file.readline().strip()
+#            balance = float(file.readline().strip())
+#            file.readline()  # Skip the END line
+#            if chrono_collection.count_documents({'date': date, 'account_num': account_num}) == 0:
+#                chrono_collection.insert_one({'date': date, 'account_num': account_num, 'balance': balance})
+#        file.close()
+#        print("Chrono data sent successfully.")
 
 
 if __name__ == '__main__':

@@ -46,22 +46,23 @@ def main():
         file.close()
         print("Data sent successfully.")
 
-    print("Sending chrono data...")
-    with open("db_input/investment_records.txt", 'r') as file:
-        # For each record in the file, check if it's date already exists in the database. If it does not, add it.
-        while True:
-            date = file.readline().strip()
-            if date == '':
-                break
-            ticker = file.readline().strip()
-            num_shares = int(file.readline().strip())
-            last_total_value = float(file.readline().strip())
-            file.readline()  # Skip the END line
-            if chrono_collection.count_documents({'date': date, 'ticker': ticker}) == 0:
-                chrono_collection.insert_one({'date': date, 'ticker': ticker, 'num_shares': num_shares,
-                                              'last_total_value': last_total_value})
-        file.close()
-        print("Chrono data sent successfully.")
+#    TODO: FIX WHATEVER IS WRONG WITH THIS
+#    print("Sending chrono data...")
+#    with open("db_input/investment_records.txt", 'r') as file:
+#        # For each record in the file, check if it's date already exists in the database. If it does not, add it.
+#        while True:
+#            date = file.readline().strip()
+#            if date == '':
+#                break
+#            ticker = file.readline().strip()
+#            num_shares = int(file.readline().strip())
+#            last_total_value = float(file.readline().strip())
+#            file.readline()  # Skip the END line
+#            if chrono_collection.count_documents({'date': date, 'ticker': ticker}) == 0:
+#                chrono_collection.insert_one({'date': date, 'ticker': ticker, 'num_shares': num_shares,
+#                                              'last_total_value': last_total_value})
+#        file.close()
+#        print("Chrono data sent successfully.")
 
 
 if __name__ == '__main__':

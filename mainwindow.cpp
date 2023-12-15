@@ -42,7 +42,6 @@ void MainWindow::updateBankTable(vector<vector<string>> bankInfo){
 }
 
 void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> bankRecords){
-    // TODO: REFACTOR TO USE A DATE/NUMBER GRAPH
     time_t t = time(nullptr);
     tm *const pTInfo = localtime(&t);
     int year = 1900 + pTInfo->tm_year;
@@ -72,7 +71,7 @@ void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> ban
     axisy->setLabelFormat("%i");
     chart->addAxis(axisy, Qt::AlignLeft);
     series->attachAxis(axisy);
-    chart->setTitle("Balance over 1 year");
+    chart->setTitle("Liquidity over 1 year");
     // Embed the chart
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -84,6 +83,7 @@ void MainWindow::updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> ban
     int tmpYear = 0;
     for (auto i : bankRecords){
         // TODO: FIX THIS
+        // TODO: REFACTOR TO USE A DATE/NUMBER GRAPH
         // Currently gets total for WHOLE YEAR
         // Need to get total for each month, but make sure that months of different years aren't grouped together
         if (i.first.getYear() != tmpYear){
@@ -135,6 +135,70 @@ void MainWindow::updateInvestmentTable(vector<vector<string>> investmentInfo){
 }
 
 void MainWindow::updateInvestmentGraphs(vector<pair<dateTime, vector<stockRecord>>> stockRecords){
+    time_t t = time(nullptr);
+    tm *const pTInfo = localtime(&t);
+    int year = 1900 + pTInfo->tm_year;
+    // Update year graph
+    QLineSeries *series = new QLineSeries();
+    for (auto i : stockRecords){
+        if (i.first.getYear() == year){ // Only add records from this year
+            int total = 0;
+            for (auto j : i.second){
+                total += j.getValue();
+            }
+            QDateTime date;
+            date.setDate(QDate(i.first.getYear(), i.first.getMonth(), i.first.getDay()));
+            series->append(QPoint(i.first.getMonth(), total));
+        }
+    }
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    auto axisx = new QDateTimeAxis;
+    axisx->setTickCount(12);
+    axisx->setFormat("MMM");
+    chart->addAxis(axisx, Qt::AlignBottom);
+    series->attachAxis(axisx);
+    auto axisy = new QValueAxis;
+    axisy->setLabelFormat("%i");
+    chart->addAxis(axisy, Qt::AlignLeft);
+    series->attachAxis(axisy);
+    chart->setTitle("Value over 1 year");
+    // Embed the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    ui->invest_year_graph->setChart(chart);
+    ui->invest_year_graph->setRenderHint(QPainter::Antialiasing);
+    ui->invest_year_graph->show();
+    // Update total graph
+    QLineSeries *seriestoo = new QLineSeries();
+    int tmpYear = 0;
+    for (auto i : stockRecords){
+        // TODO: FIX THIS
+        // TODO: REFACTOR TO USE A DATE/NUMBER GRAPH
+        // Currently gets total for WHOLE YEAR
+        // Need to get total for each month, but make sure that months of different years aren't grouped together
+        if (i.first.getYear() != tmpYear){
+            tmpYear = i.first.getYear();
+        } else{
+            int total = 0;
+            for (auto j : i.second){
+                total += j.getValue();
+            }
+            seriestoo->append(QPoint(tmpYear, total));
+        }
+    }
+    QChart *charttoo = new QChart();
+    charttoo->legend()->hide();
+    charttoo->addSeries(seriestoo);
+    charttoo->createDefaultAxes();
+    charttoo->setTitle("Value over all time");
+    // Embed the chart
+    QChartView *chartViewtoo = new QChartView(charttoo);
+    chartViewtoo->setRenderHint(QPainter::Antialiasing);
+    ui->invest_total_graph->setChart(charttoo);
+    ui->invest_total_graph->setRenderHint(QPainter::Antialiasing);
+    ui->invest_total_graph->show();
 }
 
 void MainWindow::updateInvestment(){
@@ -145,13 +209,19 @@ void MainWindow::updateInvestment(){
     }
     ui->invest_total_label->setText(QString::fromStdString("$" + to_string(total)));
     updateInvestmentTable(investmentInfo);
+    updateInvestmentGraphs(m.getStockRecords());
+}
+
+void MainWindow::sendDBUpdate(){
+    m.sendToDB();
+    // change command depending on OS
+    string command;
+    if constexpr(OS == "Windows"){command = "cd mongo && mongo_send_banks.py && mongo_send_investments.py";}
+    else{command = "cd mongo && python3 mongo_send_banks.py && python3 mongo_send_investments.py";}
+    system(command.c_str());
 }
 
 // Element linkages
-void MainWindow::closeEvent(QCloseEvent *event){ // Handle database update on close
-    // m.sendToDB();
-}
-
 void MainWindow::on_update_clicked(){
     m.getFromDB();
     updateBank();
@@ -175,6 +245,7 @@ void MainWindow::on_bank_add_clicked(){
 void MainWindow::addBank(string name, string acctNum, string acctName, string balance){
     m.addBank(name, acctNum, acctName, balance);
     updateBank();
+    sendDBUpdate();
 }
 
 void MainWindow::on_investment_add_clicked(){
@@ -186,6 +257,7 @@ void MainWindow::on_investment_add_clicked(){
 void MainWindow::addInvestment(string ticker, string shares){
     m.addInvestment(ticker, shares);
     updateInvestment();
+    sendDBUpdate();
 }
 
 void MainWindow::on_bank_edit_clicked(){
@@ -205,6 +277,7 @@ void MainWindow::on_bank_remove_clicked(){
 void MainWindow::deleteBank(string toDel){
     m.removeBank(toDel);
     updateBank();
+    sendDBUpdate();
 }
 
 void MainWindow::on_investment_remove_clicked(){
@@ -216,5 +289,6 @@ void MainWindow::on_investment_remove_clicked(){
 void MainWindow::deleteInvestment(string toDel){
     m.removeInvestment(toDel);
     updateInvestment();
+    sendDBUpdate();
 }
 

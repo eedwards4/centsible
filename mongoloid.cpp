@@ -11,7 +11,6 @@ mongoloid::mongoloid(){
     getFromDB();
 }
 
-
 int mongoloid::getFromDB() {
     string command;
     bankInfo.clear();
@@ -116,7 +115,7 @@ int mongoloid::getFromDB() {
 
 int mongoloid::sendToDB() {
     string command;
-    // Change command depending on OS
+    system("cd mongo && mkdir db_input");
     ofstream bankOut(BANK_OUT_PATH);
     ofstream investmentOut(INVEST_OUT_PATH);
     ofstream bankRecordsOut(BANK_RECORDS_OUT_PATH);
@@ -154,13 +153,6 @@ int mongoloid::sendToDB() {
             stockRecordsOut << "END\n";
         }
     }
-
-    if constexpr(OS == "Windows"){command = "cd mongo && mongo_send_bank.py && mongo_send_investments.py && deletionHandler.py";}
-    else{command = "cd mongo && python3 mongo_send_bank.py && python3 mongo_send_investments.py && python3 deletionHandler.py";}
-    int result = system(command.c_str());
-    if (result != 0){
-        return 2;
-    }
     return 0;
 }
 
@@ -170,7 +162,7 @@ void mongoloid::addBank(string name, string acctNum, string acctName, string bal
 
 void mongoloid::addInvestment(string ticker, string shares) {
     // TODO: USE SOME KIND OF API TO GET STOCK INFO
-    investmentInfo.emplace_back(vector<string>{ticker, shares, "0", "0", "0"});
+    investmentInfo.emplace_back(vector<string>{ticker, shares, "0", "0", "0", "0"});
 }
 
 void mongoloid::addBankRecord(string date, string name, string balance) {

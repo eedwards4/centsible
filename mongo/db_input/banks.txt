@@ -1,0 +1,20 @@
+Bank of America
+98709870987
+Adv Plus Banking
+2000001
+END
+Bank of the West
+5654654165191
+No idea
+8
+END
+Wells Fargo
+65654654654654
+Wells Fartgo
+8000
+END
+TestBank
+1234567890
+TestTest Test Test
+8000000
+END

@@ -48,9 +48,6 @@ public:
     void updateBank();
     void updateInvestment();
 
-    // Element linkages
-    void closeEvent(QCloseEvent* event) override;
-
 private:
     Ui::MainWindow *ui;
     mongoloid m;
@@ -61,6 +58,8 @@ private:
     // Graph update handlers
     void updateBankGraphs(vector<pair<dateTime, vector<bankRecord>>> bankRecords);
     void updateInvestmentGraphs(vector<pair<dateTime, vector<stockRecord>>> stockRecords);
+    // Ugh
+    void sendDBUpdate();
 
 private slots:
     void on_update_clicked();

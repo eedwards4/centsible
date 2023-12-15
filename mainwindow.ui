@@ -462,57 +462,25 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <widget class="QGroupBox" name="groupBox_4">
+      <widget class="QChartView" name="invest_year_graph">
        <property name="geometry">
         <rect>
-         <x>19</x>
-         <y>39</y>
-         <width>371</width>
+         <x>10</x>
+         <y>40</y>
+         <width>381</width>
          <height>221</height>
         </rect>
        </property>
-       <property name="title">
-        <string>PH FOR YEAR GAIN/LOSS GRAPH</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <widget class="QChartView" name="invest_year_graph">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>351</width>
-          <height>181</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_5">
+      <widget class="QChartView" name="invest_total_graph">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>270</y>
-         <width>371</width>
+         <x>10</x>
+         <y>280</y>
+         <width>381</width>
          <height>231</height>
         </rect>
        </property>
-       <property name="title">
-        <string>PH FOR GAIN/LOSS GRAPH</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <widget class="QChartView" name="invest_total_graph">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>351</width>
-          <height>191</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </widget>
     </widget>

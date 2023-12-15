@@ -216,8 +216,8 @@ void MainWindow::sendDBUpdate(){
     m.sendToDB();
     // change command depending on OS
     string command;
-    if constexpr(OS == "Windows"){command = "cd mongo && mongo_send_banks.py && mongo_send_investments.py";}
-    else{command = "cd mongo && python3 mongo_send_banks.py && python3 mongo_send_investments.py";}
+    if constexpr(OS == "Windows"){command = "cd mongo && mongo_send_banks.py && mongo_send_investments.py && deletionHandler.py";}
+    else{command = "cd mongo && python3 mongo_send_banks.py && python3 mongo_send_investments.py && deletionHandler.py";}
     system(command.c_str());
 }
 
